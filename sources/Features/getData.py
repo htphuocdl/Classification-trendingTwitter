@@ -12,7 +12,7 @@ if __name__ == "__main__":
     auth.set_access_token(access_token,access_secret)
     api = tweepy.API(auth)
 
-    res = api.get_status(972734318622605312)._json
+    res = api.get_status(972713980824186880)._json
     print (res)
     vector = [  {'level retweeted':res['retweet_count']}, #chua lam duoc
                 {'is retweeted': define(res['retweet_count'])},
