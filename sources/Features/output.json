@@ -1119,24 +1119,6 @@
         "tweet": "Rich Eisen's photo \"Titus Young just crashed the set…\" http://t.co/eDzRzYT",
         "userId": 96182733
     },
-    "41955851656900608": {
-        "arr_hashtags": [
-            {
-                "indices": [
-                    116,
-                    138
-                ],
-                "text": "my_40_time_is_fast_yo"
-            }
-        ],
-        "created": "Sun Feb 27 20:20:29 +0000 2011",
-        "isReplies": 0,
-        "lang": "en",
-        "links": 0,
-        "retweet_count": 0,
-        "tweet": "Damn you NFL Combine, you owe me three hours. You too Rich Eisen, why do you have to be so charming and gregarious? #my_40_time_is_fast_yo.",
-        "userId": 241236057
-    },
     "41955940085272576": {
         "arr_hashtags": [],
         "created": "Sun Feb 27 20:20:50 +0000 2011",
@@ -1272,6 +1254,16 @@
         "retweet_count": 0,
         "tweet": "Over or Under: 40 yard dash for Rich Eisen, 6.80 seconds?",
         "userId": 95805006
+    },
+    "41998025966493696": {
+        "arr_hashtags": [],
+        "created": "Sun Feb 27 23:08:04 +0000 2011",
+        "isReplies": 0,
+        "lang": "en",
+        "links": 0,
+        "retweet_count": 0,
+        "tweet": "I wish the NFL would go away for a few months.   Im unfollowing rich eisen for a little while.  N",
+        "userId": 15398296
     },
     "42004930738790400": {
         "arr_hashtags": [
@@ -2607,7 +2599,7 @@
         "lang": "de",
         "links": 0,
         "retweet_count": 0,
-        "tweet": "Rich Eisen's 40 & gt; & gt; & gt; & gt; & gt; & gt; & gt;",
+        "tweet": "Rich Eisen's 40 & gt; & gt; & gt; & gt; & gt; & gt;",
         "userId": 19526323
     },
     "42655990008651776": {
@@ -3494,7 +3486,7 @@
         "lang": "de",
         "links": 0,
         "retweet_count": 0,
-        "tweet": "RT @TeflanDon RT @illumiNatiP: Rich Iron> & gt; & gt; & gt; & gt; & gt; & gt; & gt; & gt; *",
+        "tweet": "RT @TeflanDon RT @illumiNatiP: Rich Iron> & gt; & gt; & gt; & gt; & gt; & gt; & gt; *",
         "userId": 24917800
     },
     "42658326986756096": {

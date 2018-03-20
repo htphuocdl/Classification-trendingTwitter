@@ -117,7 +117,6 @@ stringTime = time[4:7]+' '+time[8:10]+' '+time[-4:]+' '+time[11:13]+':'+time[14:
 datetime_objectEnd = datetime.strptime(stringTime, '%b %d %Y %H:%M:%S')
 
 spreadVelocity = datetime_objectEnd - datetime_objectBegin 
-spreadVelocity.total_seconds()
 
 #fill value to vector
 vector['depth_retweets']= depth_retweets/numberItem
@@ -129,7 +128,7 @@ vector['questions']= questions/numberItem
 vector['links']= links/numberItem
 vector['topicRepetition']= topicRepetition/numberItem
 vector['replies']= replies/numberItem
-vector['spreadVelocity']= spreadVelocity/numberItem
+vector['spreadVelocity']= spreadVelocity.total_seconds()/numberItem
 vector['user_diversity']= calShannon(user_diversity)
 vector['retweeted_user_diversity']= calShannon(retweeted_user_diversity)
 vector['hashtag_diversity']= calShannon(hashtag_diversity)

@@ -30,21 +30,22 @@ def isReplies(a):
     else:
         return 0
 
-if __name__ == "__main__":
+def getDataHashCode(trendingHashCode):
     translator = Translator()
     auth = tweepy.OAuthHandler(consumer_key,consumer_secret)
     auth.set_access_token(access_token,access_secret)
     api = tweepy.API(auth)
 
     data = {}
-
-    with open('../../../TT-classification/tweets/0a14dee099e100e8bf356a9937a6f974', 'r') as file:
+    temp=0
+    with open('../../../TT-classification/tweets/'+trendingHashCode, 'r') as file:
         for line in file:
-            print (line.split()[0])
+            print (temp, line.split()[0])
+            temp+=1
             try:
                 _id = line.split()[0]
                 res = api.get_status(_id)._json
-                data[_id] ={       'userId':res['user']['id'],
+                data[_id] ={    'userId':res['user']['id'],
                                 'tweet':translator.translate(res['text']).text,
                                 'retweet_count':res['retweet_count'],
                                 'arr_hashtags':res['entities']['hashtags'],
@@ -55,30 +56,10 @@ if __name__ == "__main__":
             except tweepy.TweepError:
                 print ('---------------------')
     # Write JSON file
-    with io.open('output.json', 'w', encoding='utf8') as outfile:
+    filename='../data_preparation_SVM/features/'+trendingHashCode+'.json'
+    print (filename)
+    with io.open(filename, 'w', encoding='utf8') as outfile:
         str_ = json.dumps(data,
                           indent=4, sort_keys=True,
                           separators=(',', ': '), ensure_ascii=False)
         outfile.write(to_unicode(str_))
-        
-    
-# auth = tweepy.OAuthHandler(consumer_key,consumer_secret)
-# auth.set_access_token(access_token,access_secret)
-# api = tweepy.API(auth)
-# try:
-#     res = api.get_status(42659021370568704)
-# except tweepy.TweepError:
-#     print('a')
-
-
-    # trends1 = api.trends_place(1) # from the end of your code
-    # # trends1 is a list with only one element in it,which is a
-    # # dict which we'll put in data.
-    # data = trends1[0]
-    # # grab the trends
-    # trends = data['trends']
-    # # grab the name from each trend
-    # names = [trend['name'] for trend in trends]
-    # # put all the names together with a ' ' separating them
-    # trendsName = '\n'.join(names)
-    # print(trendsName)
