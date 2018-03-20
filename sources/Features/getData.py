@@ -60,6 +60,8 @@ if __name__ == "__main__":
                           indent=4, sort_keys=True,
                           separators=(',', ': '), ensure_ascii=False)
         outfile.write(to_unicode(str_))
+        
+    
 # auth = tweepy.OAuthHandler(consumer_key,consumer_secret)
 # auth.set_access_token(access_token,access_secret)
 # api = tweepy.API(auth)
