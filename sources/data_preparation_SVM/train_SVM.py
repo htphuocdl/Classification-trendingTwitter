@@ -55,12 +55,12 @@ import pandas as pd
 
 # Importing the dataset
 dataset = pd.DataFrame(arrVectors, columns=columns)
-X = dataset.iloc[:,0:-1].values
+X = dataset.iloc[:,1:-1].values
 y = dataset.iloc[:, 15].values
 
 # Splitting the dataset into the Training set and Test set
 from sklearn.cross_validation import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.1)
 
 # Feature Scaling
 from sklearn.preprocessing import StandardScaler
@@ -72,7 +72,7 @@ X_test = sc.transform(X_test)
 from sklearn.svm import SVC
 classifier = SVC(kernel = 'linear')
 classifier.fit(X_train, y_train)
-7
+
 # Predicting the Test set results
 y_pred = classifier.predict(X_test)
 
