@@ -29,8 +29,7 @@ if __name__ == '__main__':
 #            print(trendingTopic[3])
             if temp != None: arrVectors.append(temp)
             
-    columns = [    'depth_retweets',
-                  'ratio_retweets',
+    columns = [   'ratio_retweets',
                   'hashtags',
                   'length',
                   'exclamations',
@@ -55,12 +54,12 @@ import pandas as pd
 
 # Importing the dataset
 dataset = pd.DataFrame(arrVectors, columns=columns)
-X = dataset.iloc[:,1:-1].values
-y = dataset.iloc[:, 15].values
+X = dataset.iloc[:,0:-1].values
+y = dataset.iloc[:, 14].values
 
 # Splitting the dataset into the Training set and Test set
 from sklearn.cross_validation import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.1)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2)
 
 # Feature Scaling
 from sklearn.preprocessing import StandardScaler
@@ -70,18 +69,25 @@ X_test = sc.transform(X_test)
 
 # Fitting SVM to the Training set
 from sklearn.svm import SVC
-classifier = SVC(kernel = 'linear')
+classifier = SVC(kernel = 'linear', probability = True)
 classifier.fit(X_train, y_train)
 
 # Predicting the Test set results
 y_pred = classifier.predict(X_test)
+#probality of sample
+class_probabilities = classifier.predict_proba(X_test)
+#array of percent, real label, pred label
+temp = np.stack((class_probabilities.max(1), y_test, y_pred), axis=-1)
+
+abc = np.asarray(list(filter(lambda sample: sample[0]>0.8, temp)))
+abc = np.sort(abc, axis=0)
 
 # Making the Confusion Matrix
 from sklearn.metrics import confusion_matrix,cohen_kappa_score
 #cm = confusion_matrix(y_test, y_pred, labels=[0,1])
 #cohen_kappa_score(y_test, y_pred, labels=[0,1])
 cm = confusion_matrix(y_test, y_pred)
-cohen_kappa_score(y_test, y_pred)
+print(cohen_kappa_score(y_test, y_pred))
 
 a=0
 for i in range(0,len(y_pred)):
@@ -89,41 +95,41 @@ for i in range(0,len(y_pred)):
         a=a+1
 print (a/len(y_pred))
 
-# Visualising the Training set results
-from matplotlib.colors import ListedColormap
-X_set, y_set = X_train, y_train
-X1, X2 = np.meshgrid(np.arange(start = X_set[:, 0].min() - 1, stop = X_set[:, 0].max() + 1, step = 0.01),
-                     np.arange(start = X_set[:, 1].min() - 1, stop = X_set[:, 1].max() + 1, step = 0.01))
-plt.contourf(X1, X2, classifier.predict(np.array([X1.ravel(), X2.ravel()]).T).reshape(X1.shape),
-             alpha = 0.75, cmap = ListedColormap(('red', 'green')))
-plt.xlim(X1.min(), X1.max())
-plt.ylim(X2.min(), X2.max())
-for i, j in enumerate(np.unique(y_set)):
-    plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1],
-                c = ListedColormap(('red', 'green'))(i), label = j)
-plt.title('SVM (Training set)')
-plt.xlabel('Age')
-plt.ylabel('Estimated Salary')
-plt.legend()
-plt.show()
-
-# Visualising the Test set results
-from matplotlib.colors import ListedColormap
-X_set, y_set = X_test, y_test
-X1, X2 = np.meshgrid(np.arange(start = X_set[:, 0].min() - 1, stop = X_set[:, 0].max() + 1, step = 0.01),
-                     np.arange(start = X_set[:, 1].min() - 1, stop = X_set[:, 1].max() + 1, step = 0.01))
-plt.contourf(X1, X2, classifier.predict(np.array([X1.ravel(), X2.ravel()]).T).reshape(X1.shape),
-             alpha = 0.75, cmap = ListedColormap(('red', 'green')))
-plt.xlim(X1.min(), X1.max())
-plt.ylim(X2.min(), X2.max())
-for i, j in enumerate(np.unique(y_set)):
-    plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1],
-                c = ListedColormap(('red', 'green'))(i), label = j)
-plt.title('SVM (Test set)')
-plt.xlabel('Age')
-plt.ylabel('Estimated Salary')
-plt.legend()
-plt.show()
+## Visualising the Training set results
+#from matplotlib.colors import ListedColormap
+#X_set, y_set = X_train, y_train
+#X1, X2 = np.meshgrid(np.arange(start = X_set[:, 0].min() - 1, stop = X_set[:, 0].max() + 1, step = 0.01),
+#                     np.arange(start = X_set[:, 1].min() - 1, stop = X_set[:, 1].max() + 1, step = 0.01))
+#plt.contourf(X1, X2, classifier.predict(np.array([X1.ravel(), X2.ravel()]).T).reshape(X1.shape),
+#             alpha = 0.75, cmap = ListedColormap(('red', 'green')))
+#plt.xlim(X1.min(), X1.max())
+#plt.ylim(X2.min(), X2.max())
+#for i, j in enumerate(np.unique(y_set)):
+#    plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1],
+#                c = ListedColormap(('red', 'green'))(i), label = j)
+#plt.title('SVM (Training set)')
+#plt.xlabel('Age')
+#plt.ylabel('Estimated Salary')
+#plt.legend()
+#plt.show()
+#
+## Visualising the Test set results
+#from matplotlib.colors import ListedColormap
+#X_set, y_set = X_test, y_test
+#X1, X2 = np.meshgrid(np.arange(start = X_set[:, 0].min() - 1, stop = X_set[:, 0].max() + 1, step = 0.01),
+#                     np.arange(start = X_set[:, 1].min() - 1, stop = X_set[:, 1].max() + 1, step = 0.01))
+#plt.contourf(X1, X2, classifier.predict(np.array([X1.ravel(), X2.ravel()]).T).reshape(X1.shape),
+#             alpha = 0.75, cmap = ListedColormap(('red', 'green')))
+#plt.xlim(X1.min(), X1.max())
+#plt.ylim(X2.min(), X2.max())
+#for i, j in enumerate(np.unique(y_set)):
+#    plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1],
+#                c = ListedColormap(('red', 'green'))(i), label = j)
+#plt.title('SVM (Test set)')
+#plt.xlabel('Age')
+#plt.ylabel('Estimated Salary')
+#plt.legend()
+#plt.show()
 
 
 

@@ -120,7 +120,6 @@ def generateFeature(topicName, filename, label):
 
     spreadVelocity =   datetime_objectBegin - datetime_objectEnd
     #fill value to vector
-    vector.append(depth_retweets/numberItem)
     vector.append(ratio_retweets/numberItem)
     vector.append(hashtags/numberItem)
     vector.append(length/numberItem)
