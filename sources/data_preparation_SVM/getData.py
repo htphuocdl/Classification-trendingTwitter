@@ -63,11 +63,9 @@ def getDataHashCode(trendingHashCode):
     str_ = json.dumps(data,
                         indent=4, sort_keys=False,
                         separators=(',', ': '), ensure_ascii=False)
-    filename='../data_preparation_SVM/features/'+trendingHashCode+'.json'
+    filename='/home/crazytrau/Desktop/features/'+trendingHashCode+'.json'
     file = open(filename, "w", encoding='utf-8')
     file.write(str_)
     file.close()
-    filename='../data_preparation_SVM/output.json'
-    file = open(filename, "w", encoding='utf-8')
-    file.write('"'+ trendingHashCode+'"')
-    file.close()
+    
+getDataHashCode('cd13f4e6921f58002958a760278a768d')
