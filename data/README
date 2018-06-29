@@ -1,0 +1,34 @@
+------------------------------------------------------------------------
+Real-Time Classification of Twitter Trends - Dataset
+------------------------------------------------------------------------
+Authors: Arkaitz Zubiaga, Damiano Spina, Víctor Fresno, Raquel Martínez
+-------------------------------------------------------------------------
+
+--------
+DATASET
+--------
+
+In this package you can find the dataset used in the paper Real-Time Classification of Twitter Trends. The dataset is available for download on the following link:
+
+http://nlp.uned.es/~damiano/datasets/TT-classification.tar.gz
+
+
+The tar.gz package contains:
+
+-- README: This file
+-- TT-annotations.csv: A comma-separated-value file containing the 1,036 annotated trending topics. Each line corresponds to a trending topic and has four columns: a md5 hash (used as ID to identify the tweets associated to each TT), the date when the TT has been crawled (in the yyyyMMdd format), the trending topic name (as it appears on Twitter) and the manual annotation. The manual annotation consists in one of the four classes in the taxonomy: news, ongoing-event, meme or commemorative.
+-- tweets: The tweets folder contains the tweets associated to each of the trending topics in the TT-annotations.csv file described above. Each file (named with a TT md5 hash) corresponds to one trending topic. The files in this folder are in a similar format as the TREC Microblog Corpus (tab-separated-value files where the first column contains the tweet ID and the second the author's screen name).
+In order to respect Twitter's TOS, tweets are not redistributed and only tweets ids and author screen names are provided. Tweet texts can be downloaded by using any of the following tools:
+
+- TREC Microblog Track (in Java)
+  https://github.com/lintool/twitter-tools
+- SemEval-2013 Task 2 Download script (in Python)
+  http://www.cs.york.ac.uk/semeval-2013/task2/index.php?id=data
+- RepLab 2013 Twitter Texts Downloader (in Java)
+  http://nlp.uned.es/replab2013/replab2013_twitter_texts_downloader_v0.7.tar.gz
+
+--------
+CITATION
+--------
+
+Please cite the article below if you use this resource in your research: (T.B.A.)

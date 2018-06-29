@@ -37,6 +37,4 @@ if __name__ == '__main__':
             numTweet+= numberItem
             if numberItem > 0 :
                 numLabel[toLabel(trendingTopic[3])]+=1
-            else:
-                print (trendingTopic[0], toLabel(trendingTopic[3]))
     print(numTweet, numLabel)
