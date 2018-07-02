@@ -81,7 +81,7 @@ models = [
     SGDClassifier(loss="hinge", penalty="l2"),
 #    MLPClassifier(solver='lbfgs', alpha=1e-5,hidden_layer_sizes=(5, 2), random_state=1),
     KNeighborsClassifier(3),
-    SVC(kernel="linear", C=0.025),
+    SVC(kernel="linear"),
     SVC(gamma=2, C=1),
     GaussianProcessClassifier(1.0 * RBF(1.0)),
     DecisionTreeClassifier(max_depth=5),

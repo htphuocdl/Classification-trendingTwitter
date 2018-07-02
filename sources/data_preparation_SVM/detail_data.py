@@ -24,7 +24,8 @@ def toLabel(label):
 #main function
 if __name__ == '__main__':
     # main variable
-    numTweet=0
+    numTweet=[0,0,0,0]
+    numTweet2=[0,0,0,0]
     numLabel=[0,0,0,0]
 
     #read every trending and export json file
@@ -34,7 +35,9 @@ if __name__ == '__main__':
             path='../../../features/'+trendingTopic[0]+'.json'
             data = json.load(open(path))
             numberItem = len(data)
-            numTweet+= numberItem
+            numTweet2[toLabel(trendingTopic[3])]+= numberItem
             if numberItem > 0 :
                 numLabel[toLabel(trendingTopic[3])]+=1
+            numberItem = sum(1 for line in open('../../data/tweets/'+trendingTopic[0]))
+            numTweet[toLabel(trendingTopic[3])]+= numberItem
     print(numTweet, numLabel)

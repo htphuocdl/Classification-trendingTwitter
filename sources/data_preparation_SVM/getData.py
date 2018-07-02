@@ -48,13 +48,16 @@ def getDataHashCode(trendingHashCode):
                 _id = line.split()[0]
                 res = api.get_status(_id)._json
                 data[_id] ={    'userId':res['user']['id'],
-                                'tweet':translator.translate(res['text']).text,
+                                'tweet':res['text'],
                                 'retweet_count':res['retweet_count'],
                                 'arr_hashtags':res['entities']['hashtags'],
                                 'links':len(res['entities']['urls']),
                                 'isReplies':isReplies(res['in_reply_to_status_id']),
                                 'created':res['created_at'],
                                 'lang':res['lang']}
+                print ('twitter')
+                translator.translate(res['text']).text
+                print ('google')
                 temp1+=1
             except tweepy.TweepError:
                 print ('---------------------')
@@ -67,5 +70,5 @@ def getDataHashCode(trendingHashCode):
     file = open(filename, "w", encoding='utf-8')
     file.write(str_)
     file.close()
-    
-getDataHashCode('cd13f4e6921f58002958a760278a768d')
+
+# getDataHashCode('cd13f4e6921f58002958a760278a768d')
